@@ -3,7 +3,7 @@ import socket
 from tkinter import filedialog
 from tkinter import messagebox
 import os
-import pickle
+
 
 
 root=Tk()
@@ -35,7 +35,7 @@ def Send():
         print (host)
         print('waiting for any incoming connections....')
         conn, addr=s.accept()
-        file=open(filename, 'r+')
+        file=open(filename, 'rb')
         file_data=file.read(1024)
         conn.send (file_data)
         print("Data has been transmitted successfully..")
@@ -74,7 +74,7 @@ def Receive():
         s=socket.socket()
         port=8080
         s.connect(( ID, port))
-        file=open(filenamel, 'w+')
+        file=open(filenamel, 'wb')
         file_data=s.recv(1024)
         file.write(file_data)
         file.close()
