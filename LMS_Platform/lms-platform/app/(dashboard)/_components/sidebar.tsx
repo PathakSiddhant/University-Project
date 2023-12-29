@@ -1,4 +1,4 @@
-import { SidebarRoutes } from "../sidebar-routes"
+import { SidebarRoutes } from "./sidebar-routes"
 import { Logo } from "./logo"
 
 export const Sidebar = () => {
