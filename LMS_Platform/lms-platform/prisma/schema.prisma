@@ -27,6 +27,7 @@ model Course {
   updatedAt DateTime @updatedAt
 
     @@index([categoryId])
+    
 }
 
 model Category {
@@ -49,3 +50,4 @@ model Attachment {
 
   @@index([courseId])
 }
+
