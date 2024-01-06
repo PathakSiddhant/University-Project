@@ -74,12 +74,13 @@ export const AttachmentForm = ({
       </div>
       {!isEditing && (
         <>
-          {initialData.attachments.length === 0 && (
+          {initialData.attachments && initialData.attachments.length === 0 && (
             <p className="text-sm mt-2 text-slate-500 italic">
               No attachments yet
             </p>
           )}
-          {initialData.attachments.length > 0 && (
+
+          {initialData.attachments && initialData.attachments.length > 0 && (
             <div className="space-y-2">
               {initialData.attachments.map((attachment) => (
                 <div
