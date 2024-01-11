@@ -1,7 +1,7 @@
-
+import Mux from "@mux/mux-node";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import Mux from "@mux/mux-node"
+
 import { db } from "@/lib/db";
 
 const { Video } = new Mux(
@@ -9,8 +9,7 @@ const { Video } = new Mux(
   process.env.MUX_TOKEN_SECRET!,
 );
 
-
-/*export async function DELETE(
+export async function DELETE(
   req: Request,
   { params }: { params: { courseId: string; chapterId: string } }
 ) {
@@ -50,6 +49,14 @@ const { Video } = new Mux(
         }
       });
 
+      if (existingMuxData) {
+        await Video.Assets.del(existingMuxData.assetId);
+        await db.muxData.delete({
+          where: {
+            id: existingMuxData.id,
+          }
+        });
+      }
     }
 
     const deletedChapter = await db.chapter.delete({
@@ -81,7 +88,7 @@ const { Video } = new Mux(
     console.log("[CHAPTER_ID_DELETE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
-}*/
+}
 
 export async function PATCH(
   req: Request,
@@ -147,10 +154,9 @@ export async function PATCH(
       });
     }
 
-
     return NextResponse.json(chapter);
   } catch (error) {
     console.log("[COURSES_CHAPTER_ID]", error);
-    return new NextResponse("Internal Error", { status: 500 });
+    return new NextResponse("Internal Error", { status: 500 }); 
   }
 }
